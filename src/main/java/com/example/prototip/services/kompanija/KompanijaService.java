@@ -2,7 +2,6 @@
 package com.example.prototip.services.kompanija;
 
 import com.example.prototip.entities.Kompanija;
-import com.example.prototip.models.kompanija.CreateKompanijaModel;
 import com.example.prototip.models.kompanija.KompanijaModel;
 import com.example.prototip.repositories.IKompanijaRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class KompanijaService implements IKompanijaService {
+public class KompanijaService {
 
     private final IKompanijaRepository iKompanijaRepository;
 
@@ -47,11 +46,5 @@ public class KompanijaService implements IKompanijaService {
         result.setMbr(saved.getMbr());
         result.setStatus(saved.getStatus());
         return result;
-    }
-
-    @Override
-    public KompanijaModel CreateKompanija(CreateKompanijaModel createKompanijaModel) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'CreateKompanija'");
     }
 }

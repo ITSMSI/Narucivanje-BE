@@ -8,14 +8,12 @@ com\example\prototip\models\kompanija\KompanijaModel.class
 com\example\prototip\entities\User.class
 com\example\prototip\services\kompanija\KompanijaService.class
 com\example\prototip\entities\Kompanija.class
-com\example\prototip\services\kompanija\IKompanijaService.class
 com\example\prototip\entities\Obrok.class
 com\example\prototip\entities\Role$RoleBuilder.class
 com\example\prototip\entities\Meni$MeniBuilder.class
 com\example\prototip\entities\Porudzbina$PorudzbinaBuilder.class
 com\example\prototip\repositories\IKompanijaRepository.class
 com\example\prototip\entities\Lokacija$LokacijaBuilder.class
-com\example\prototip\models\kompanija\CreateKompanijaModel.class
 com\example\prototip\entities\Porudzbina.class
 com\example\prototip\entities\Role.class
 com\example\prototip\config\SecurityConfig.class
