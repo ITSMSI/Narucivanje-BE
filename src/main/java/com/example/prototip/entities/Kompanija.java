@@ -1,13 +1,12 @@
+// src/main/java/com/example/prototip/entities/Kompanija.java
 package com.example.prototip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -25,11 +24,9 @@ public class Kompanija {
     private UUID id;
 
     @Column(name = "naziv", nullable = false)
-    @NotBlank
     private String naziv;
 
-    @Column(name = "adresa", nullable = false)
-    @NotBlank
+    @Column(name = "adresa")
     private String adresa;
 
     @Column(name = "pib")
@@ -38,35 +35,30 @@ public class Kompanija {
     @Column(name = "mbr")
     private String mbr;
 
-    @Column(name = "status", nullable = false)
-    @NotNull
+    @Column(name = "status")
     @Builder.Default
     private Boolean status = true;
 
-    @Column(name = "lastmoddt")
-    @Builder.Default
-    private LocalDateTime lastmoddt = LocalDateTime.now();
-
-    @Column(name = "createdby")
-    private UUID createdby;
-
     @Column(name = "createddt")
-    private LocalDateTime createddt;
+    private LocalDateTime createdDt;
 
     @Column(name = "createdon")
-    private LocalDateTime createdon;
+    private String createdOn;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdby")
+    @JsonIgnore
+    private User createdBy;
+
+    @Column(name = "lastmoddt")
+    private LocalDateTime lastModDt;
 
     @Column(name = "lastmodon")
-    private LocalDateTime lastmodon;
+    private String lastModOn;
 
-    @OneToMany(mappedBy = "kompanija")
-    private Set<User> users;
-
-    @OneToMany(mappedBy = "kompanija")
-    private Set<Lokacija> lokacija;
-
-    @OneToOne
-    @JoinColumn(name = "lastmodby", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lastmodby")
+    @JsonIgnore
     private User lastModBy;
 
     @Column(name = "last_mod_by_kompanija")

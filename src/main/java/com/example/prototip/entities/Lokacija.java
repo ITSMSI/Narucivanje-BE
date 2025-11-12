@@ -1,13 +1,11 @@
+// src/main/java/com/example/prototip/entities/Lokacija.java
 package com.example.prototip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -24,36 +22,30 @@ public class Lokacija {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "adresa", nullable = false)
-    @NotBlank
+    @Column(name = "adresa")
     private String adresa;
 
-    @Column(name = "grad", nullable = false)
-    @NotBlank
+    @Column(name = "grad")
     private String grad;
 
     @Column(name = "postkod")
-    @NotNull
-    private Integer postkod;
+    private String postKod;
 
-    @Column(name = "status", nullable = false)
-    @NotNull
+    @Column(name = "status")
     @Builder.Default
     private Boolean status = true;
 
-    @Column(name = "lastmoddt")
-    @Builder.Default
-    private LocalDateTime lastmoddt = LocalDateTime.now();
-
-    @ManyToOne
-    @JoinColumn(name = "kompanija", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kompanija")
+    @JsonIgnore
     private Kompanija kompanija;
 
-    @OneToMany(mappedBy = "lokacija")
-    private Set<User> users;
+    @Column(name = "lastmoddt")
+    private java.time.LocalDateTime lastModDt;
 
-    @OneToOne
-    @JoinColumn(name = "lastmodby", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lastmodby")
+    @JsonIgnore
     private User lastModBy;
 
     @Column(name = "last_mod_by_lokacija")

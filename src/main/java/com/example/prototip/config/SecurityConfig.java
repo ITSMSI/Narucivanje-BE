@@ -1,3 +1,4 @@
+// src/main/java/com/example/prototip/config/SecurityConfig.java
 package com.example.prototip.config;
 
 import org.springframework.context.annotation.Bean;
@@ -16,12 +17,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
-            .httpBasic(basic -> basic.realmName("prototip"));
+            .httpBasic(httpBasic -> httpBasic.disable())
+            .formLogin(form -> form.disable())
+            .sessionManagement(session -> session.disable());
+
         return http.build();
     }
 

@@ -1,14 +1,11 @@
+// src/main/java/com/example/prototip/entities/User.java
 package com.example.prototip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -25,67 +22,54 @@ public class User {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "ime", nullable = false)
-    @NotBlank
-    private String ime;
-
-    @Column(name = "prezime", nullable = false)
-    @NotBlank
-    private String prezime;
-
     @Column(name = "email", unique = true, nullable = false)
-    @Email
-    @NotBlank
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "ime")
+    private String ime;
+
+    @Column(name = "prezime")
+    private String prezime;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     @Column(name = "telefon")
     private String telefon;
 
-    @Column(name = "status", nullable = false)
-    @NotNull 
+    @Column(name = "status")
     @Builder.Default
     private Boolean status = true;
 
-    @Column(name = "lastmoddt")
-    @Builder.Default
-    private LocalDateTime lastmoddt = LocalDateTime.now();
-
-    @Column(name = "first_name", nullable = false)
-    @NotBlank
-    @Builder.Default
-    private String firstName = "";
-
-    @Column(name = "last_name", nullable = false)
-    @NotBlank
-    @Builder.Default
-    private String lastName = "";
-
-    @ManyToOne
-    @JoinColumn(name = "kompanija", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kompanija")
+    @JsonIgnore
     private Kompanija kompanija;
 
-    @ManyToOne
-    @JoinColumn(name = "lokacija", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lokacija_id")
+    @JsonIgnore
     private Lokacija lokacija;
 
-    @ManyToOne
-    @JoinColumn(name = "role", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role")
+    @JsonIgnore
     private Role role;
 
-    @OneToMany(mappedBy = "korisnik")
-    private Set<Porudzbina> porudzbina;
+    @Column(name = "lastmoddt")
+    private java.time.LocalDateTime lastModDt;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lastmodby", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lastmodby")
+    @JsonIgnore
     private User lastModBy;
 
     @Column(name = "last_mod_by_user")
     private UUID lastModByUser;
-
-    @ManyToOne
-    @JoinColumn(name = "lokacija_id")
-    private Lokacija lokacijaId;
 }

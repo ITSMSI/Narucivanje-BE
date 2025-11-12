@@ -1,13 +1,11 @@
+// src/main/java/com/example/prototip/entities/Role.java
 package com.example.prototip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -24,54 +22,38 @@ public class Role {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "naziv", nullable = false)
-    @NotBlank
+    @Column(name = "naziv")
     private String naziv;
 
-    @Column(name = "admin", nullable = false)
-    @NotNull
-    @Builder.Default
-    private Boolean admin = false;
+    @Column(name = "admin")
+    private Boolean admin;
 
-    @Column(name = "enduser", nullable = false)
-    @NotNull
-    @Builder.Default
-    private Boolean enduser = true;
+    @Column(name = "enduser")
+    private Boolean endUser;
 
-    @Column(name = "meni", nullable = false)
-    @NotNull
-    @Builder.Default
-    private Boolean meni = false;
+    @Column(name = "meni")
+    private Boolean meni;
 
-    @Column(name = "pregled", nullable = false)
-    @NotNull
-    @Builder.Default
-    private Boolean pregled = false;
+    @Column(name = "obrok")
+    private Boolean obrok;
 
-    @Column(name = "kompanija")
-    private Boolean kompanija;
+    @Column(name = "pregled")
+    private Boolean pregled;
 
-    @Column(name = "obrok", nullable = false)
-    @NotNull
-    @Builder.Default
-    private Boolean obrok = false;
-
-    @Column(name = "status", nullable = false)
-    @NotNull
+    @Column(name = "status")
     @Builder.Default
     private Boolean status = true;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kompanija")
+    @JsonIgnore
+    private Kompanija kompanija;
+
     @Column(name = "lastmoddt")
-    @Builder.Default
-    private LocalDateTime lastmoddt = LocalDateTime.now();
+    private java.time.LocalDateTime lastModDt;
 
-    @OneToMany(mappedBy = "role")
-    private Set<User> users;
-
-    @OneToOne
-    @JoinColumn(name = "lastmodby", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "last_mod_by_role")
+    @JsonIgnore
     private User lastModBy;
-
-    @Column(name = "last_mod_by_role")
-    private UUID lastModByRole;
 }
