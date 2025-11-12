@@ -2,52 +2,50 @@ package com.example.prototip.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.UUID;
 
 @Entity
-@Table(name = "OBROK")
+@Table(name = "obrok")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Obrok {
-    @Column(name = "ID")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long obrok;
 
-    @Column(name = "NAZIV")
+    @Id
+    @GeneratedValue
+    @UuidGenerator(style = UuidGenerator.Style.TIME)
+    @Column(name = "id")
+    private UUID id;
+
+    @Column(name = "naziv", nullable = false)
     @NotBlank
     private String naziv;
 
-    @Column(name = "OPIS")
+    @Column(name = "opis")
     private String opis;
 
-    @Column(name = "STATUS")
-    @NotBlank
-    private Boolean status;
-
-    @Column(name = "SLIKA", columnDefinition = "VARBINARY")
+    @Column(name = "slika", columnDefinition = "bytea")
     private byte[] slika;
 
-    @Column(name = "LASTMODDT")
-    @NotBlank
+    @Column(name = "status", nullable = false)
+    @NotNull
+    @Builder.Default
+    private Boolean status = true;
+
+    @Column(name = "lastmoddt")
+    // Fixed: Add @Builder.Default for Lombok warning (line ~41)
+    @Builder.Default
     private LocalDateTime lastModDt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "obrok")
-    private Set<Meni> meni;
-
-    @OneToMany(mappedBy = "obrok")
-    private Set<Porudzbina> porudzbina;
-
     @OneToOne
-    @JoinColumn(name = "LASTMODBY", referencedColumnName = "ID")
+    @JoinColumn(name = "lastmodby", referencedColumnName = "id")
     private User lastModBy;
 
+    @Column(name = "last_mod_by_obrok")
+    private UUID lastModByObrok;
 }

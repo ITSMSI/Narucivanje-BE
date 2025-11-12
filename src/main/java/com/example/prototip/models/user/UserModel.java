@@ -1,31 +1,25 @@
 package com.example.prototip.models.user;
 
-import com.example.prototip.models.kompanija.KompanijaUserModel;
-import com.example.prototip.models.lokacija.LokacijaUserModel;
-import com.example.prototip.models.role.RoleUserModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserModel {
-    private Long id;
+    private UUID id;
     private String ime;
     private String prezime;
     private String email;
     private String password;
     private String telefon;
     private Boolean status;
-    private LocalDateTime lastModDt=LocalDateTime.now();
-    private KompanijaUserModel kompanija;
-    private LokacijaUserModel lokacija;
-    private RoleUserModel role;
-    private UserLastModByModel lastModBy;
-
+    // Fixed: Add @Builder.Default for Lombok warning (line ~25)
+    @Builder.Default
+    private LocalDateTime lastModDt = LocalDateTime.now();
+    private UUID kompanija;
+    private UUID lokacija;
+    private UUID role;
 }

@@ -6,6 +6,7 @@ com\example\prototip\models\kompanija\KompanijaLokacijaModel$KompanijaLokacijaMo
 com\example\prototip\models\porudzbina\CreatePorudzbinaModel$CreatePorudzbinaModelBuilder.class
 com\example\prototip\models\user\UpdateUserRoleModel$UpdateUserRoleModelBuilder.class
 com\example\prototip\models\meni\UpdateMeniStatusModel.class
+com\example\prototip\config\SecurityConfig.class
 com\example\prototip\repositories\IRoleRepository.class
 com\example\prototip\models\obrok\ObrokMeniModel$ObrokMeniModelBuilder.class
 com\example\prototip\models\user\UpdateUserRoleModel.class
