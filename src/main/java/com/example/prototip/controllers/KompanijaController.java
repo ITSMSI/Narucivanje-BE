@@ -1,32 +1,28 @@
+// src/main/java/com/example/prototip/controllers/KompanijaController.java
 package com.example.prototip.controllers;
 
-import com.example.prototip.models.kompanija.CreateKompanijaModel;
-import com.example.prototip.services.kompanija.IKompanijaService;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+import com.example.prototip.models.kompanija.KompanijaModel;
+import com.example.prototip.services.kompanija.KompanijaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/kompanija")
+@RequestMapping("/api/kompanija")
+@RequiredArgsConstructor
 public class KompanijaController {
-    private IKompanijaService iKompanijaService;
 
-    public KompanijaController(IKompanijaService iKompanijaService) {
-        this.iKompanijaService = iKompanijaService;
-    }
-    @PostMapping("create")
-    public ResponseEntity<?> CreateKompanija(@RequestBody @Valid CreateKompanijaModel model, BindingResult result){
-        if(result.hasErrors()){
-            return new ResponseEntity<>(result.getAllErrors(),HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(iKompanijaService.CreateKompanija(model),HttpStatus.OK);
+    private final KompanijaService kompanijaService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<KompanijaModel> getKompanija(@PathVariable UUID id) {
+        return ResponseEntity.ok(kompanijaService.getKompanijaById(id));
     }
 
-
-
+    @PostMapping
+    public ResponseEntity<KompanijaModel> createKompanija(@RequestBody KompanijaModel model) {
+        return ResponseEntity.ok(kompanijaService.createKompanija(model));
+    }
 }

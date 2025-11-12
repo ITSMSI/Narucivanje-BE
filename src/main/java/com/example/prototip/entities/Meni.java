@@ -1,7 +1,7 @@
+// src/main/java/com/example/prototip/entities/Meni.java
 package com.example.prototip.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
@@ -33,7 +33,6 @@ public class Meni {
     private Boolean status = true;
 
     @Column(name = "lastmoddt")
-    // Fixed: Add @Builder.Default for Lombok warning (line ~37)
     @Builder.Default
     private LocalDateTime lastModDt = LocalDateTime.now();
 

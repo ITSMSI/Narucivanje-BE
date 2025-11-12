@@ -45,7 +45,7 @@ public class User {
     private String telefon;
 
     @Column(name = "status", nullable = false)
-    @NotNull
+    @NotNull 
     @Builder.Default
     private Boolean status = true;
 

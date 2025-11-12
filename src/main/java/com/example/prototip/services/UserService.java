@@ -1,26 +1,25 @@
+// src/main/java/com/example/prototip/services/UserService.java
 package com.example.prototip.services;
 
 import com.example.prototip.entities.User;
 import com.example.prototip.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    public User getUserById(UUID id) {
-        return userRepository.findById(id).orElse(null);
-    }
+    private final UserRepository userRepository;
 
     public User saveUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
         return userRepository.save(user);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
