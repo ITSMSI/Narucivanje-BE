@@ -1,69 +1,31 @@
+// src/main/java/com/example/prototip/mappers/KompanijaMapper.java
 package com.example.prototip.mappers;
 
 import com.example.prototip.entities.Kompanija;
 import com.example.prototip.models.kompanija.CreateKompanijaModel;
 import com.example.prototip.models.kompanija.KompanijaModel;
-import com.example.prototip.models.kompanija.UpdateKompanijaModel;
-import com.example.prototip.models.user.UserLastModByModel;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Component
 public class KompanijaMapper {
 
-    public static KompanijaModel mapKompanijaToKompanijaModel(Kompanija kompanija){
-        return KompanijaModel.builder()
-                .id(kompanija.getKompanija())
-                .naziv(kompanija.getNaziv())
-                .adresa(kompanija.getAdresa())
-                .pib(kompanija.getPib())
-                .mbr(kompanija.getMbr())
-                .status(kompanija.getStatus())
-                .lastModDt(kompanija.getLastModDt())
-                .lastModBy(UserLastModByModel.builder()
-                        .id(kompanija.getLastModBy().getUser())
-                        .ime(kompanija.getLastModBy().getIme())
-                        .prezime(kompanija.getLastModBy().getPrezime())
-                        .email(kompanija.getLastModBy().getEmail())
-                        .build()
-                )
-                .build();
-    }
-    public static Kompanija mapKompanijaModelToKompanija(KompanijaModel kompanija){
-        return Kompanija.builder()
-                .kompanija(kompanija.getId())
-                .naziv(kompanija.getNaziv())
-                .adresa(kompanija.getAdresa())
-                .pib(kompanija.getPib())
-                .mbr(kompanija.getMbr())
-                .status(kompanija.getStatus())
-                .lastModDt(kompanija.getLastModDt())
-                .build();
-    }
-    public static Kompanija mapCreateKompanijaModelToKompanija(CreateKompanijaModel kompanija){
-        return Kompanija.builder()
-                .naziv(kompanija.getNaziv())
-                .adresa(kompanija.getAdresa())
-                .pib(kompanija.getPib())
-                .mbr(kompanija.getMbr())
-                .build();
-    }
-    public static Kompanija mapUpdateKompanijaModelToKompanija(UpdateKompanijaModel kompanija){
-        return Kompanija.builder()
-                .naziv(kompanija.getNaziv())
-                .adresa(kompanija.getAdresa())
-                .pib(kompanija.getPib())
-                .mbr(kompanija.getMbr())
-                .build();
+    public static Kompanija mapCreateKompanijaModelToKompanija(CreateKompanijaModel model) {
+        Kompanija kompanija = new Kompanija();
+        kompanija.setNaziv(model.getNaziv());
+        kompanija.setAdresa(model.getAdresa());
+        kompanija.setPib(model.getPib());
+        kompanija.setMbr(model.getMbr());
+        return kompanija;
     }
 
-
-    public static List<KompanijaModel> mapKompanijaListToKompanijaModelList(List<Kompanija> kompanijaList){
-        List<KompanijaModel> kompanijaModelList = new ArrayList<>();
-        for(Kompanija kompanija : kompanijaList){
-            kompanijaModelList.add(mapKompanijaToKompanijaModel(kompanija));
-        }
-        return kompanijaModelList;
+    public static KompanijaModel mapKompanijaToKompanijaModel(Kompanija entity) {
+        KompanijaModel model = new KompanijaModel();
+        model.setId(entity.getId());
+        model.setNaziv(entity.getNaziv());
+        model.setAdresa(entity.getAdresa());
+        model.setPib(entity.getPib());
+        model.setMbr(entity.getMbr());
+        model.setStatus(entity.getStatus());
+        return model;
     }
-
 }

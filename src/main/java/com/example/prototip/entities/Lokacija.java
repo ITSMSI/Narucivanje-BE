@@ -2,42 +2,48 @@ package com.example.prototip.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;   // ← ADD THIS
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "lokacija")
-@Data @Builder @NoArgsConstructor @AllArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lokacija {
 
     @Id
+    @GeneratedValue
+    @UuidGenerator(style = UuidGenerator.Style.TIME)
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "adresa", nullable = false)
     @NotBlank
     private String adresa;
 
-    @Column(name = "postkod")
-    @NotNull
-    private Integer postkod;
-
     @Column(name = "grad", nullable = false)
     @NotBlank
     private String grad;
 
-    @Column(name = "status")
+    @Column(name = "postkod")
+    @NotNull
+    private Integer postkod;
+
+    @Column(name = "status", nullable = false)
     @NotNull
     @Builder.Default
     private Boolean status = true;
 
     @Column(name = "lastmoddt")
     @Builder.Default
-    private LocalDateTime lastModDt = LocalDateTime.now();
+    private LocalDateTime lastmoddt = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "kompanija", nullable = false)
@@ -49,4 +55,7 @@ public class Lokacija {
     @OneToOne
     @JoinColumn(name = "lastmodby", referencedColumnName = "id")
     private User lastModBy;
+
+    @Column(name = "last_mod_by_lokacija")
+    private UUID lastModByLokacija;
 }

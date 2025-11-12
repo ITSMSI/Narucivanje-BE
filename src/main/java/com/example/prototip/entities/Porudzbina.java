@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,23 +19,14 @@ import java.util.UUID;
 public class Porudzbina {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue
     @UuidGenerator(style = UuidGenerator.Style.TIME)
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "datum", nullable = false)
     @NotNull
     private LocalDate datum;
-
-    @Column(name = "status")
-    @NotNull
-    @Builder.Default
-    private Boolean status = true;
-
-    @Column(name = "lastmoddt")
-    @Builder.Default
-    private LocalDateTime lastModDt = LocalDateTime.now();
 
     @Column(name = "komentar", nullable = false)
     @NotBlank
@@ -45,11 +38,19 @@ public class Porudzbina {
     @Column(name = "napomena", columnDefinition = "TEXT")
     private String napomena;
 
+    @Column(name = "status")
+    @NotNull
+    @Builder.Default
+    private Boolean status = true;
+
+    @Column(name = "lastmoddt")
+    @Builder.Default
+    private LocalDateTime lastmoddt = LocalDateTime.now();
+
     @Column(name = "created_dt", nullable = false, updatable = false)
     @Builder.Default
     private LocalDateTime createdDt = LocalDateTime.now();
 
-    // Relationships
     @ManyToOne
     @JoinColumn(name = "obrok", nullable = false)
     private Obrok obrok;
@@ -60,7 +61,7 @@ public class Porudzbina {
 
     @ManyToOne
     @JoinColumn(name = "lokacija_id")
-    private Lokacija lokacija;
+    private Lokacija lokacijaId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -73,4 +74,7 @@ public class Porudzbina {
     @OneToOne
     @JoinColumn(name = "lastmodby", referencedColumnName = "id")
     private User lastModBy;
+
+    @Column(name = "last_mod_by_porudzbina")
+    private UUID lastModByPorudzbina;
 }
