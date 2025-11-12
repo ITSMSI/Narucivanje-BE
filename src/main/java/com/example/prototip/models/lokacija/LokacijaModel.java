@@ -1,25 +1,14 @@
+// src/main/java/com/example/prototip/models/lokacija/LokacijaModel.java
 package com.example.prototip.models.lokacija;
 
-import com.example.prototip.models.kompanija.KompanijaLokacijaModel;
-import com.example.prototip.models.user.UserLastModByModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class LokacijaModel {
-    private Long id;
+    private UUID id;
     private String adresa;
-    private Integer postkod;
     private String grad;
+    private String postKod;      // <-- matches entity
     private Boolean status;
-    private LocalDateTime lastModDt;
-    private KompanijaLokacijaModel kompanija;
-    private UserLastModByModel lastModBy;
 }

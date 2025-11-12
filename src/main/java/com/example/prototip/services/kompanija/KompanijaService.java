@@ -7,7 +7,9 @@ import com.example.prototip.repositories.IKompanijaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -15,18 +17,17 @@ public class KompanijaService {
 
     private final IKompanijaRepository iKompanijaRepository;
 
+    /*** NEW METHOD – returns all companies ***/
+    public List<KompanijaModel> getAllKompanija() {
+        return iKompanijaRepository.findAll()
+                .stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
+    }
+
     public KompanijaModel getKompanijaById(UUID id) {
         return iKompanijaRepository.findById(id)
-                .map(entity -> {
-                    KompanijaModel model = new KompanijaModel();
-                    model.setId(entity.getId());
-                    model.setNaziv(entity.getNaziv());
-                    model.setAdresa(entity.getAdresa());
-                    model.setPib(entity.getPib());
-                    model.setMbr(entity.getMbr());
-                    model.setStatus(entity.getStatus());
-                    return model;
-                })
+                .map(this::toModel)
                 .orElseThrow(() -> new RuntimeException("Kompanija not found"));
     }
 
@@ -37,14 +38,20 @@ public class KompanijaService {
         entity.setPib(model.getPib());
         entity.setMbr(model.getMbr());
         entity.setStatus(model.getStatus() != null ? model.getStatus() : true);
+
         Kompanija saved = iKompanijaRepository.save(entity);
-        KompanijaModel result = new KompanijaModel();
-        result.setId(saved.getId());
-        result.setNaziv(saved.getNaziv());
-        result.setAdresa(saved.getAdresa());
-        result.setPib(saved.getPib());
-        result.setMbr(saved.getMbr());
-        result.setStatus(saved.getStatus());
-        return result;
+        return toModel(saved);
+    }
+
+    /*** Helper – avoids duplication ***/
+    private KompanijaModel toModel(Kompanija entity) {
+        KompanijaModel model = new KompanijaModel();
+        model.setId(entity.getId());
+        model.setNaziv(entity.getNaziv());
+        model.setAdresa(entity.getAdresa());
+        model.setPib(entity.getPib());
+        model.setMbr(entity.getMbr());
+        model.setStatus(entity.getStatus());
+        return model;
     }
 }

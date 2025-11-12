@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -15,6 +16,12 @@ import java.util.UUID;
 public class KompanijaController {
 
     private final KompanijaService kompanijaService;
+
+    /*** NEW ENDPOINT – matches the FE ***/
+    @GetMapping("/get/all")
+    public ResponseEntity<List<KompanijaModel>> getAllKompanija() {
+        return ResponseEntity.ok(kompanijaService.getAllKompanija());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<KompanijaModel> getKompanija(@PathVariable UUID id) {

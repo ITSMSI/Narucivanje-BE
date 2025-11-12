@@ -1,27 +1,17 @@
+// src/main/java/com/example/prototip/models/role/RoleModel.java
 package com.example.prototip.models.role;
 
-import com.example.prototip.models.user.UserLastModByModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class RoleModel {
-    private Long id;
+    private UUID id;
     private String naziv;
     private Boolean admin;
-    private Boolean enduser;
-    private Boolean obrok;
+    private Boolean endUser;     // <-- matches entity
     private Boolean meni;
-    private Boolean kompanija;
+    private Boolean obrok;
     private Boolean pregled;
     private Boolean status;
-    private LocalDateTime lastModDt;
-    private UserLastModByModel lastmodby;
 }

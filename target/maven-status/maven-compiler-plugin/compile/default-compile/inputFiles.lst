@@ -2,6 +2,9 @@ D:\Narucivanje-BE\src\main\java\com\example\prototip\config\CorsConfig.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\config\SecurityConfig.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\controllers\AuthController.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\controllers\KompanijaController.java
+D:\Narucivanje-BE\src\main\java\com\example\prototip\controllers\LokacijaController.java
+D:\Narucivanje-BE\src\main\java\com\example\prototip\controllers\ObrokController.java
+D:\Narucivanje-BE\src\main\java\com\example\prototip\controllers\RoleController.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\controllers\UserController.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\entities\Kompanija.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\entities\Lokacija.java
@@ -56,4 +59,7 @@ D:\Narucivanje-BE\src\main\java\com\example\prototip\repositories\IRoleRepositor
 D:\Narucivanje-BE\src\main\java\com\example\prototip\repositories\UserRepository.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\services\kompanija\IKompanijaService.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\services\kompanija\KompanijaService.java
+D:\Narucivanje-BE\src\main\java\com\example\prototip\services\lokacija\LokacijaService.java
+D:\Narucivanje-BE\src\main\java\com\example\prototip\services\obrok\ObrokService.java
+D:\Narucivanje-BE\src\main\java\com\example\prototip\services\role\RoleService.java
 D:\Narucivanje-BE\src\main\java\com\example\prototip\services\UserService.java

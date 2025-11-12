@@ -1,3 +1,4 @@
+com\example\prototip\services\obrok\ObrokService.class
 com\example\prototip\models\lokacija\CreateLokacijaModel$CreateLokacijaModelBuilder.class
 com\example\prototip\models\kompanija\KompanijaUserModel$KompanijaUserModelBuilder.class
 com\example\prototip\models\porudzbina\PorudzbinaModel$PorudzbinaModelBuilder.class
@@ -6,6 +7,7 @@ com\example\prototip\models\kompanija\KompanijaLokacijaModel$KompanijaLokacijaMo
 com\example\prototip\models\porudzbina\CreatePorudzbinaModel$CreatePorudzbinaModelBuilder.class
 com\example\prototip\models\user\UpdateUserRoleModel$UpdateUserRoleModelBuilder.class
 com\example\prototip\models\meni\UpdateMeniStatusModel.class
+com\example\prototip\services\role\RoleService.class
 com\example\prototip\config\SecurityConfig.class
 com\example\prototip\repositories\IRoleRepository.class
 com\example\prototip\models\obrok\ObrokMeniModel$ObrokMeniModelBuilder.class
@@ -15,7 +17,9 @@ com\example\prototip\models\meni\UpdateMeniModel.class
 com\example\prototip\models\lokacija\LokacijaUserModel$LokacijaUserModelBuilder.class
 com\example\prototip\models\user\UserLastModByModel.class
 com\example\prototip\models\kompanija\UpdateKompanijaModel$UpdateKompanijaModelBuilder.class
+com\example\prototip\controllers\ObrokController.class
 com\example\prototip\services\kompanija\KompanijaService.class
+com\example\prototip\controllers\LokacijaController.class
 com\example\prototip\entities\Obrok.class
 com\example\prototip\entities\Role$RoleBuilder.class
 com\example\prototip\models\lokacija\UpdateLokacijaModel.class
@@ -32,11 +36,13 @@ com\example\prototip\entities\User$UserBuilder.class
 com\example\prototip\models\obrok\UpdateObrokModel$UpdateObrokModelBuilder.class
 com\example\prototip\models\user\UpdateUserStatusModel.class
 com\example\prototip\models\kompanija\KompanijaModel.class
+com\example\prototip\controllers\RoleController.class
 com\example\prototip\models\obrok\ObrokPorudzbinaModel$ObrokPorudzbinaModelBuilder.class
 com\example\prototip\controllers\AuthController.class
 com\example\prototip\models\user\UserModel.class
 com\example\prototip\models\role\RoleUserModel$RoleUserModelBuilder.class
 com\example\prototip\repositories\ILokacijaRepository.class
+com\example\prototip\services\lokacija\LokacijaService.class
 com\example\prototip\repositories\IKompanijaRepository.class
 com\example\prototip\models\lokacija\UpdateLokacijaStatus$UpdateLokacijaStatusBuilder.class
 com\example\prototip\entities\Obrok$ObrokBuilder.class
@@ -72,12 +78,10 @@ com\example\prototip\models\user\CreateUserModel$CreateUserModelBuilder.class
 com\example\prototip\services\UserService.class
 com\example\prototip\models\role\UpdateRoleModel$UpdateRoleModelBuilder.class
 com\example\prototip\models\role\UpdateRoleStatusModel.class
-com\example\prototip\models\obrok\ObrokModel$ObrokModelBuilder.class
 com\example\prototip\models\obrok\UpdateObrokModel.class
 com\example\prototip\models\user\UpdateUserStatusModel$UpdateUserStatusModelBuilder.class
 com\example\prototip\models\obrok\ObrokMeniModel.class
 com\example\prototip\models\role\RoleUserModel.class
-com\example\prototip\models\lokacija\LokacijaModel$LokacijaModelBuilder.class
 com\example\prototip\models\lokacija\UpdateLokacijaModel$UpdateLokacijaModelBuilder.class
 com\example\prototip\models\kompanija\UpdateKompanijaModel.class
 com\example\prototip\entities\Kompanija.class
@@ -96,4 +100,3 @@ com\example\prototip\models\kompanija\UpdateKompanijaStatusModel$UpdateKompanija
 com\example\prototip\models\meni\UpdateMeniModel$UpdateMeniModelBuilder.class
 com\example\prototip\models\role\UpdateRoleStatusModel$UpdateRoleStatusModelBuilder.class
 com\example\prototip\models\lokacija\LokacijaModel.class
-com\example\prototip\models\role\RoleModel$RoleModelBuilder.class

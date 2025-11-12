@@ -1,12 +1,11 @@
 // src/main/java/com/example/prototip/entities/Meni.java
 package com.example.prototip.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.UUID;
 
 @Entity
@@ -23,23 +22,15 @@ public class Meni {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "datum", nullable = false)
-    @NotNull
-    private LocalDate datum;
+    @Column(name = "naziv")
+    private String naziv;
 
-    @Column(name = "status", nullable = false)
-    @NotNull
+    @Column(name = "status")
     @Builder.Default
     private Boolean status = true;
 
-    @Column(name = "lastmoddt")
-    @Builder.Default
-    private LocalDateTime lastModDt = LocalDateTime.now();
-
-    @OneToOne
-    @JoinColumn(name = "lastmodby", referencedColumnName = "id")
-    private User lastModBy;
-
-    @Column(name = "last_mod_by_meni")
-    private UUID lastModByMeni;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kompanija")
+    @JsonIgnore
+    private Kompanija kompanija;
 }
